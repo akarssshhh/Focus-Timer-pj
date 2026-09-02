@@ -1,0 +1,68 @@
+{
+  "books": [
+    {
+      "id": "1",
+      "title": "Atomic Habits",
+      "author": "James Clear",
+      "genre": "Self-help",
+      "status": "finished",
+      "rating": 5
+    },
+    {
+      "id": "2",
+      "title": "The Pragmatic Programmer",
+      "author": "Andrew Hunt & David Thomas",
+      "genre": "Technology",
+      "status": "reading",
+      "rating": 4
+    },
+    {
+      "id": "3",
+      "title": "Sapiens",
+      "author": "Yuval Noah Harari",
+      "genre": "History",
+      "status": "finished",
+      "rating": 5
+    },
+    {
+      "id": "4",
+      "title": "Clean Code",
+      "author": "Robert C. Martin",
+      "genre": "Technology",
+      "status": "reading",
+      "rating": 4
+    },
+    {
+      "id": "5",
+      "title": "The Alchemist",
+      "author": "Paulo Coelho",
+      "genre": "Fiction",
+      "status": "want to read",
+      "rating": 0
+    },
+    {
+      "id": "6",
+      "title": "Deep Work",
+      "author": "Cal Newport",
+      "genre": "Productivity",
+      "status": "finished",
+      "rating": 4
+    },
+    {
+      "id": "7",
+      "title": "Eloquent JavaScript",
+      "author": "Marijn Haverbeke",
+      "genre": "Technology",
+      "status": "want to read",
+      "rating": 0
+    },
+    {
+      "id": "8",
+      "title": "The Psychology of Money",
+      "author": "Morgan Housel",
+      "genre": "Finance",
+      "status": "reading",
+      "rating": 5
+    }
+  ]
+}
