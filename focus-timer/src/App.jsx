@@ -112,7 +112,7 @@ function App() {
     };
 
     saveSession();
-  }, [seconds, label, category]);
+  }, [seconds, label, category,reset]);
 
   // -----------------------------
   // SCROLL TO NEWEST SESSION
