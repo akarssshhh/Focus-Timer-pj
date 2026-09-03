@@ -1399,6 +1399,13 @@
       "category": "coding",
       "completedAt": "2026-09-03T07:36:07.077Z",
       "id": "wIX5xiYsTng"
+    },
+    {
+      "label": "sdadasdasdas123",
+      "minutes": 25,
+      "category": "study",
+      "completedAt": "2026-09-03T07:40:19.661Z",
+      "id": "MN4bDqmiqvg"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
