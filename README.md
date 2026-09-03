@@ -46,6 +46,14 @@ The project was developed progressively through three milestones (M1 → M2 → 
 - Reusable custom `useTimer` hook
 - Start / Pause / Reset timer logic extracted from `App.jsx`
 
+### Database Watcher
+
+- Watches `db.json` for changes
+- Automatically creates a Git commit when `db.json` changes
+- Automatically pushes the commit to the configured Git remote
+- Useful for keeping session data synchronized with the Git repository
+- Runs using the PowerShell script `watch-db.ps1`
+
 ---
 
 ## Technologies Used
@@ -61,20 +69,32 @@ The project was developed progressively through three milestones (M1 → M2 → 
 - `useMemo`
 - Custom React Hook
 - Tailwind CSS
+- JSON Server
+- PowerShell
+- Git / GitHub
 
 ---
 
 ## Project Structure
 
-The main frontend files are organized approximately as follows:
+The project contains the React frontend, backend database, and database watcher.
 
 ```text
-focus-timer/
+Focus-Timer-pj/
 │
-├── src/
-│   ├── App.jsx
-│   ├── useTimer.js
+├── focus-timer/              # React frontend
+│   │
+│   ├── src/
+│   │   ├── App.jsx
+│   │   ├── useTimer.js
+│   │   └── ...
+│   │
+│   ├── package.json
 │   └── ...
 │
+├── db.json                   # JSON Server database
+├── watch-db.ps1              # Database watcher script
 ├── package.json
+├── package-lock.json
+├── README.md
 └── ...
