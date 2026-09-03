@@ -160,6 +160,20 @@
       "category": "study",
       "completedAt": "2026-09-03T06:13:26.170Z",
       "id": "SAT0auplqKU"
+    },
+    {
+      "label": "demo",
+      "minutes": 25,
+      "category": "study",
+      "completedAt": "2026-09-03T06:13:27.443Z",
+      "id": "QDg-qMGiwac"
+    },
+    {
+      "label": "demo2",
+      "minutes": 25,
+      "category": "study",
+      "completedAt": "2026-09-03T06:13:27.544Z",
+      "id": "1lZrp3MpOD4"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
