@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 function useTimer(initialSeconds) {
   const [seconds, setSeconds] = useState(initialSeconds);
@@ -36,12 +36,12 @@ function useTimer(initialSeconds) {
     setRunning(false);
   };
 
-  const reset = () => {
-    setRunning(false);
-    setSeconds(initialSeconds);
-    clearInterval(intervalRef.current);
-    intervalRef.current = null;
-  };
+const reset = useCallback(() => {
+  setRunning(false);
+  setSeconds(initialSeconds);
+  clearInterval(intervalRef.current);
+  intervalRef.current = null;
+}, [initialSeconds]);
 
   return {
     seconds,
