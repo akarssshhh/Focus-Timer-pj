@@ -104,6 +104,62 @@
       "category": "study",
       "completedAt": "2026-09-03T06:13:14.315Z",
       "id": "ad6OwDbvvQc"
+    },
+    {
+      "label": "chec",
+      "minutes": 25,
+      "category": "study",
+      "completedAt": "2026-09-03T06:13:24.945Z",
+      "id": "4QMhWbb2hD0"
+    },
+    {
+      "label": "che",
+      "minutes": 25,
+      "category": "study",
+      "completedAt": "2026-09-03T06:13:25.464Z",
+      "id": "zgoLhWChJdA"
+    },
+    {
+      "label": "ch",
+      "minutes": 25,
+      "category": "study",
+      "completedAt": "2026-09-03T06:13:25.495Z",
+      "id": "XlQAUvgvkvU"
+    },
+    {
+      "label": "c",
+      "minutes": 25,
+      "category": "study",
+      "completedAt": "2026-09-03T06:13:25.525Z",
+      "id": "y8SLVG4szL8"
+    },
+    {
+      "label": "Untitled Session",
+      "minutes": 25,
+      "category": "study",
+      "completedAt": "2026-09-03T06:13:25.556Z",
+      "id": "JgoXCKR4TSU"
+    },
+    {
+      "label": "d",
+      "minutes": 25,
+      "category": "study",
+      "completedAt": "2026-09-03T06:13:25.830Z",
+      "id": "RN6qy98ycBQ"
+    },
+    {
+      "label": "de",
+      "minutes": 25,
+      "category": "study",
+      "completedAt": "2026-09-03T06:13:25.941Z",
+      "id": "UHvGzSPicQU"
+    },
+    {
+      "label": "dem",
+      "minutes": 25,
+      "category": "study",
+      "completedAt": "2026-09-03T06:13:26.170Z",
+      "id": "SAT0auplqKU"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
