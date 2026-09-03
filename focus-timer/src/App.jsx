@@ -7,7 +7,7 @@ function App() {
   // -----------------------------
   // TIMER
   // -----------------------------
-  const { seconds, running, start, pause, reset } = useTimer(25 * 60); // 25 minutes
+  const { seconds, running, start, pause, reset } = useTimer(5); // 25 minutes
 
   // -----------------------------
   // SESSION
@@ -112,7 +112,7 @@ function App() {
     };
 
     saveSession();
-  }, [seconds, label, category,reset]);
+  }, [seconds, label, category,]);
 
   // -----------------------------
   // SCROLL TO NEWEST SESSION
