@@ -7,13 +7,7 @@ function App() {
   // -----------------------------
   // TIMER
   // -----------------------------
-  const {
-    seconds,
-    running,
-    start,
-    pause,
-    reset,
-  } = useTimer(25 * 60);
+  const { seconds, running, start, pause, reset } = useTimer(25 * 60); // 25 minutes
 
   // -----------------------------
   // SESSION
@@ -41,6 +35,7 @@ function App() {
   // -----------------------------
   const inputRef = useRef(null);
   const listRef = useRef(null);
+  const resetTimeoutRef = useRef(null);
 
   // -----------------------------
   // AUTO FOCUS INPUT
@@ -106,6 +101,9 @@ function App() {
         const savedSession = await response.json();
 
         setSessions((current) => [...current, savedSession]);
+        resetTimeoutRef.current = setTimeout(() => {
+          reset();
+        }, 2000);
       } catch (err) {
         setSaveError(err.message);
       } finally {
@@ -149,15 +147,12 @@ function App() {
   const stats = useMemo(() => {
     const totalMinutes = sessions.reduce(
       (total, session) => total + session.minutes,
-      0
+      0,
     );
 
     const sessionCount = sessions.length;
 
-    const averageSession =
-      sessionCount === 0
-        ? 0
-        : totalMinutes / sessionCount;
+    const averageSession = sessionCount === 0 ? 0 : totalMinutes / sessionCount;
 
     return {
       totalMinutes,
@@ -176,8 +171,7 @@ function App() {
         .includes(search.toLowerCase());
 
       const matchesCategory =
-        filterCategory === "all" ||
-        session.category === filterCategory;
+        filterCategory === "all" || session.category === filterCategory;
 
       return matchesSearch && matchesCategory;
     });
@@ -189,56 +183,38 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-900 p-8 text-white">
       <div className="mx-auto max-w-2xl">
-
-        <h1 className="mb-8 text-center text-4xl font-bold">
-          Focus Timer
-        </h1>
+        <h1 className="mb-8 text-center text-4xl font-bold">Focus Timer</h1>
 
         {/* -----------------------------
             STATS
         ----------------------------- */}
         <div className="mb-8 grid grid-cols-3 gap-4">
-
           <div className="rounded-xl bg-gray-800 p-4 text-center">
-            <p className="text-sm text-gray-400">
-              Total Focus Time
-            </p>
+            <p className="text-sm text-gray-400">Total Focus Time</p>
 
-            <p className="mt-2 text-2xl font-bold">
-              {stats.totalMinutes} min
-            </p>
+            <p className="mt-2 text-2xl font-bold">{stats.totalMinutes} min</p>
           </div>
 
           <div className="rounded-xl bg-gray-800 p-4 text-center">
-            <p className="text-sm text-gray-400">
-              Sessions
-            </p>
+            <p className="text-sm text-gray-400">Sessions</p>
 
-            <p className="mt-2 text-2xl font-bold">
-              {stats.sessionCount}
-            </p>
+            <p className="mt-2 text-2xl font-bold">{stats.sessionCount}</p>
           </div>
 
           <div className="rounded-xl bg-gray-800 p-4 text-center">
-            <p className="text-sm text-gray-400">
-              Average
-            </p>
+            <p className="text-sm text-gray-400">Average</p>
 
             <p className="mt-2 text-2xl font-bold">
               {stats.averageSession.toFixed(1)} min
             </p>
           </div>
-
         </div>
 
         {/* -----------------------------
             TIMER
         ----------------------------- */}
         <div className="rounded-2xl bg-gray-800 p-8">
-
-          <label className="mb-2 block">
-            Session Label
-          </label>
+          <label className="mb-2 block">Session Label</label>
 
           <input
             ref={inputRef}
@@ -248,9 +224,7 @@ function App() {
             className="mb-4 w-full rounded-lg bg-gray-700 p-3"
           />
 
-          <label className="mb-2 block">
-            Category
-          </label>
+          <label className="mb-2 block">Category</label>
 
           <select
             value={category}
@@ -263,18 +237,13 @@ function App() {
             <option value="other">Other</option>
           </select>
 
-          <div className="mb-8 text-center text-7xl font-bold">
-            {time}
-          </div>
+          <div className="mb-8 text-center text-7xl font-bold">{time}</div>
 
           {seconds === 0 && (
-            <p className="mb-6 text-center text-green-400">
-              Session complete!
-            </p>
+            <p className="mb-6 text-center text-green-400">Session complete!</p>
           )}
 
           <div className="flex justify-center gap-4">
-
             <button
               onClick={running ? pause : start}
               disabled={seconds === 0}
@@ -289,31 +258,22 @@ function App() {
             >
               Reset
             </button>
-
           </div>
 
           {saving && (
-            <p className="mt-5 text-center text-yellow-400">
-              Saving…
-            </p>
+            <p className="mt-5 text-center text-yellow-400">Saving…</p>
           )}
 
           {saveError && (
-            <p className="mt-5 text-center text-red-400">
-              {saveError}
-            </p>
+            <p className="mt-5 text-center text-red-400">{saveError}</p>
           )}
-
         </div>
 
         {/* -----------------------------
             SESSIONS
         ----------------------------- */}
         <div className="mt-8 rounded-2xl bg-gray-800 p-6">
-
-          <h2 className="mb-4 text-2xl font-bold">
-            Completed Sessions
-          </h2>
+          <h2 className="mb-4 text-2xl font-bold">Completed Sessions</h2>
 
           {/* SEARCH */}
           <input
@@ -336,68 +296,36 @@ function App() {
             <option value="other">Other</option>
           </select>
 
-          {loading && (
-            <p className="text-gray-400">
-              Loading sessions...
-            </p>
+          {loading && <p className="text-gray-400">Loading sessions...</p>}
+
+          {error && <p className="text-red-400">{error}</p>}
+
+          {!loading && !error && filteredSessions.length === 0 && (
+            <p className="text-gray-400">No matching sessions found.</p>
           )}
 
-          {error && (
-            <p className="text-red-400">
-              {error}
-            </p>
-          )}
-
-          {!loading &&
-            !error &&
-            filteredSessions.length === 0 && (
-              <p className="text-gray-400">
-                No matching sessions found.
-              </p>
-            )}
-
-          <div
-            ref={listRef}
-            className="max-h-80 space-y-3 overflow-y-auto"
-          >
+          <div ref={listRef} className="max-h-80 space-y-3 overflow-y-auto">
             {filteredSessions.map((session) => (
-              <div
-                key={session.id}
-                className="rounded-lg bg-gray-700 p-4"
-              >
+              <div key={session.id} className="rounded-lg bg-gray-700 p-4">
                 <div className="flex justify-between">
-
                   <div>
-                    <p className="font-semibold">
-                      {session.label}
-                    </p>
+                    <p className="font-semibold">{session.label}</p>
 
-                    <p className="text-sm text-gray-400">
-                      {session.category}
-                    </p>
+                    <p className="text-sm text-gray-400">{session.category}</p>
                   </div>
 
                   <div className="text-right">
-
-                    <p>
-                      {session.minutes} min
-                    </p>
+                    <p>{session.minutes} min</p>
 
                     <p className="text-xs text-gray-400">
-                      {new Date(
-                        session.completedAt
-                      ).toLocaleString()}
+                      {new Date(session.completedAt).toLocaleString()}
                     </p>
-
                   </div>
-
                 </div>
               </div>
             ))}
           </div>
-
         </div>
-
       </div>
     </div>
   );
