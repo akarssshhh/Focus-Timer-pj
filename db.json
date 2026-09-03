@@ -97,6 +97,13 @@
       "category": "coding",
       "completedAt": "2026-09-03T08:55:28.673Z",
       "id": "4JA0KEdpLwk"
+    },
+    {
+      "label": "checkreset",
+      "minutes": 25,
+      "category": "coding",
+      "completedAt": "2026-09-03T09:01:30.486Z",
+      "id": "AqXJ9v4_aBE"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
