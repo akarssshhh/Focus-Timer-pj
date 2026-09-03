@@ -90,6 +90,13 @@
       "category": "study",
       "completedAt": "2026-09-02T06:38:44.526Z",
       "id": "zJ0520TikRE"
+    },
+    {
+      "label": "check",
+      "minutes": 25,
+      "category": "coding",
+      "completedAt": "2026-09-02T11:51:58.295Z",
+      "id": "kVlZs-jhZlQ"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
