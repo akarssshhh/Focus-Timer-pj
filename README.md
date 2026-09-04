@@ -1,100 +1,152 @@
-# Focus Timer / Study Tracker
+# Focus Timer & Study Tracker
 
-A React-based Focus Timer and Study Tracker application that allows users to run focus sessions, record completed sessions, and view session statistics.
+A React-based Focus Timer and Study Tracker built to practice and demonstrate the core React Hooks:
 
-The project was developed progressively through three milestones (M1 → M2 → M3), introducing React fundamentals, backend persistence, and advanced React concepts.
+- `useState`
+- `useEffect`
+- `useRef`
+- `useMemo`
+- Custom Hooks
+
+The application provides a countdown focus timer, saves completed study sessions through a REST API, displays live statistics, and allows users to search and filter their session history.
+
+---
+
+## Live Project
+
+### Frontend
+
+https://unique-croquembouche-7ed6fc.netlify.app
+
+### Backend API
+
+https://focus-timer-pj.onrender.com
+
+### Sessions API
+
+https://focus-timer-pj.onrender.com/sessions
 
 ---
 
 ## Features
 
-### M1 — Basic Focus Timer
+### Timer
 
-- 25-minute focus timer
-- Start / Pause functionality
+- Countdown timer
+- Start timer
+- Pause timer
 - Reset timer
+- Automatically stops at `00:00`
+- Displays `Session complete!` when the timer finishes
+- Automatically saves the completed session
+
+### Session Details
+
+Each completed session stores:
+
 - Session label
-- Session category
-- `MM:SS` time formatting
-- Automatic input focus
-- Timer interval management using `useEffect` and `useRef`
+- Duration
+- Category
+- Completion date and time
 
-### M2 — Backend Persistence
+Available categories:
 
-- Fetch previously completed sessions from the backend
-- Save completed sessions using a POST request
-- Loading state while fetching sessions
-- Error handling for API requests
-- Saving state while a session is being saved
-- Save error handling
-- Automatically scroll to the newest session
-- Session history with:
-  - Label
-  - Category
-  - Duration
-  - Completion date/time
+- Study
+- Work
+- Reading
+- Other
 
-### M3 — Live Stats + Custom Hook
+### Session History
+
+- Loads previous sessions from the REST API
+- Displays completed sessions
+- Automatically scrolls to the newest session
+- Shows loading state while fetching data
+- Handles API errors
+- Shows saving state while a session is being saved
+
+### Search & Filter
+
+- Search sessions by label
+- Filter sessions by category
+- Combined search and category filtering
+
+### Statistics
+
+The application calculates:
 
 - Total focus time
 - Number of completed sessions
-- Average session length
-- Search sessions by label
-- Filter sessions by category
-- Memoized statistics using `useMemo`
-- Memoized filtered sessions using `useMemo`
-- Reusable custom `useTimer` hook
-- Start / Pause / Reset timer logic extracted from `App.jsx`
+- Average session duration
 
-### Database Watcher
-
-- Watches `db.json` for changes
-- Automatically creates a Git commit when `db.json` changes
-- Automatically pushes the commit to the configured Git remote
-- Useful for keeping session data synchronized with the Git repository
-- Runs using the PowerShell script `watch-db.ps1`
+Statistics are calculated using `useMemo`.
 
 ---
 
-## Technologies Used
+## React Hooks Used
 
-- React
-- JavaScript
-- JSX
-- REST API
-- `fetch()`
-- `useState`
-- `useEffect`
-- `useRef`
-- `useMemo`
-- Custom React Hook
-- Tailwind CSS
-- JSON Server
-- PowerShell
-- Git / GitHub
+This project was specifically built to understand when and why different React Hooks should be used.
+
+### useState
+
+Used for reactive application data such as:
+
+- Timer seconds
+- Timer running state
+- Session label
+- Category
+- Sessions
+- Loading state
+- Error state
+- Search value
+- Category filter
 
 ---
 
-## Project Structure
+### useEffect
 
-The project contains the React frontend, backend database, and database watcher.
+Used for side effects such as:
+
+- Running the countdown interval
+- Cleaning up the timer
+- Loading sessions from the API
+- Saving completed sessions
+- Auto-focusing the label input
+- Auto-scrolling the session list
+
+---
+
+### useRef
+
+Used for values and DOM elements that should persist without causing a re-render.
+
+Two important examples in this project:
+
+1. Storing the `setInterval` ID
+2. Accessing DOM elements for:
+   - Auto-focus
+   - Auto-scroll
+
+---
+
+### useMemo
+
+Used for derived/calculated data.
+
+The project uses it for:
+
+- Total focus time
+- Average session duration
+- Session count
+- Filtered session list
+
+This prevents unnecessary recalculation when unrelated state changes.
+
+---
+
+### Custom Hook
+
+The timer logic was extracted into:
 
 ```text
-Focus-Timer-pj/
-│
-├── focus-timer/              # React frontend
-│   │
-│   ├── src/
-│   │   ├── App.jsx
-│   │   ├── useTimer.js
-│   │   └── ...
-│   │
-│   ├── package.json
-│   └── ...
-│
-├── db.json                   # JSON Server database
-├── watch-db.ps1              # Database watcher script
-├── package.json
-├── package-lock.json
-├── README.md
-└── ...
+src/useTimer.js
