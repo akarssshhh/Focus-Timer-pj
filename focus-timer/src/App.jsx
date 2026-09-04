@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import useTimer from "./useTimer";
 
-const API_URL = "http://localhost:3002/sessions";
+const API_URL = "https://focus-timer-pj.onrender.com/sessions";
 
 function App() {
   // -----------------------------
